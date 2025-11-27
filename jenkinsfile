@@ -1,0 +1,21 @@
+
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/<your-username>/jenkins-demo.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run App') {
+            steps {
+                sh 'python app.py &'
+            }
+        }
+    }
+}
